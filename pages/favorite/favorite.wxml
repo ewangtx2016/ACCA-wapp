@@ -1,0 +1,11 @@
+<!--pages/favorite/favorite.wxml-->
+<view class="container">
+  <scroll-view scroll-y class='favorite'>
+    <block wx:for="{{favorite}}" wx:key="favorite">
+      <navigator class='favorite-item' url="/pages/wordDetail/wordDetail?word={{item.word}}&trans={{item.trans}}">
+        <text class="iconfont icon-favor">{{item.word}}</text>
+        <view class="iconfont icon-right"></view>
+      </navigator>
+    </block>
+  </scroll-view>
+</view>

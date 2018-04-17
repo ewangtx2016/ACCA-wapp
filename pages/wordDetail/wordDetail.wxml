@@ -1,0 +1,71 @@
+<!--pages/wordDetail/wordDetail.wxml-->
+<view class="container">
+  <view class="search">
+    <view class="input">
+      <image src="/images/search.png"></image>
+      <view class="btn" bindtap="biu">{{word.word}}</view>
+    </view>
+  </view>
+
+  <view class='wordDetail'>
+    <view class="wordTrans">
+      <view class="word-up">
+        <view class='word-up--l'>
+          <text>{{wordDetail.word}}</text>
+          <view bindtap='favorWord' style="color:{{favor ? '#ff366d' : ''}}" class="iconfont icon-favor"></view>
+        </view>
+        <view class='iconfont icon-share'></view>
+      </view>
+      <view class='word-down'>{{wordDetail.trans}}</view>
+    </view>
+
+    <!-- 单词视频 -->
+    <view class="word-video">
+      <text class="h1">相关知识点微课</text>
+      <view class="video" bindtap='video'>
+        <view class='iconfont icon-video'></view>
+        <text>{{wordDetail.video.title}}</text>
+      </view>
+    </view>
+
+    <!-- 热门公开课 -->
+    <view class="word-gkk">
+      <text class="h1">热门公开课</text>
+      <scroll-view scroll-y class='gkk-course'>
+        <view class="gkk-course--item">
+          <view class="gkk-course--item-intro">
+            <image src="http://www.zbgedu.com/uploadfile/img/2018/0320/265_176_152151296434356.jpg"></image>
+            <view class="gkk-course--item_title">
+              <view class='h2'>2018年4月CMA P1考前冲刺串讲</view>
+              <view class='h3'>讲师：Yang Wu</view>
+            </view>
+            <text class="gkk-course--item_price">免费</text>
+          </view>
+          <view class="iconfont icon-time"> 2018-02-26 18:30-20:30</view>
+        </view>
+        <view class="gkk-course--item">
+          <view class="gkk-course--item-intro">
+            <image src="http://www.zbgedu.com/uploadfile/img/2018/0320/265_176_152151296434356.jpg"></image>
+            <view class="gkk-course--item_title">
+              <view class='h2'>2018年4月CMA P1考前冲刺串讲</view>
+              <view class='h3'>讲师：Yang Wu</view>
+            </view>
+            <text class="gkk-course--item_price">免费</text>
+          </view>
+          <view class="iconfont icon-time"> 2018-02-26 18:30-20:30</view>
+        </view>
+        <view class="gkk-course--item">
+          <view class="gkk-course--item-intro">
+            <image src="http://www.zbgedu.com/uploadfile/img/2018/0320/265_176_152151296434356.jpg"></image>
+            <view class="gkk-course--item_title">
+              <view class='h2'>2018年4月CMA P1考前冲刺串讲</view>
+              <view class='h3'>讲师：Yang Wu</view>
+            </view>
+            <text class="gkk-course--item_price">免费</text>
+          </view>
+          <view class="iconfont icon-time"> 2018-02-26 18:30-20:30</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

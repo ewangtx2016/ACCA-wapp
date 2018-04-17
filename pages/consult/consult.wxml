@@ -1,0 +1,9 @@
+<!--pages/consult/consult.wxml-->
+<view class='container'>
+  <textarea class="fuckme" placeholder='请写下您的意见或建议'></textarea>
+  <view class="phone">
+    <text class='phone-num'>手机号<text>(选填)</text></text>
+    <input type="number" class="phone-input"></input>
+  </view>
+  <view class='btn'>提交</view>
+</view>

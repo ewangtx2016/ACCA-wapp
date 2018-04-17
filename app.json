@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/dictionary/dictionary",
+    "pages/favorite/favorite",
+    "pages/wordDetail/wordDetail",
+    "pages/video/video",
+    "pages/consult/consult",
+    "pages/webview/webview"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "CFA财经词汇",
+    "navigationBarTextStyle": "black"
+  }
+}

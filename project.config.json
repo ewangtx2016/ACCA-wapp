@@ -1,0 +1,67 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.91",
+	"appid": "wx9821082b22d64907",
+	"projectname": "CFA%E8%AF%8D%E5%85%B8",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "dictionary",
+					"pathName": "pages/dictionary/dictionary",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "wordDetail",
+					"pathName": "pages/wordDetail/wordDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "video",
+					"pathName": "pages/video/video",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "consult",
+					"pathName": "pages/consult/consult",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "favorite",
+					"pathName": "pages/favorite/favorite",
+					"query": ""
+				}
+			]
+		}
+	}
+}

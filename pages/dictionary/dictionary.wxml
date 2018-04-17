@@ -1,0 +1,41 @@
+<!--pages/dictionary/dictionary.wxml-->
+<view class="container">
+  <view class="search">
+    <view class="input">
+      <image src="/images/search.png"></image>
+      <input type="text" bindinput="what" placeholder="请输入要查询的单词" placeholder-style="color:#ccc;font-weight:300;" value="{{search}}" focus />
+      <image class="cancle" bindtap="hehe" src="/images/cancle.png"></image>
+    </view>
+  </view>
+
+  <view class="wordlist">
+    <!-- 搜索单词列表--输入时显示 -->
+    <block wx:if="{{searchWords.length}}">
+      <scroll-view class="sw" scroll-y="true">
+        <view class="cans">
+          <navigator wx:for="{{searchWords}}" class="item" wx:key="sw" url="/pages/wordDetail/wordDetail?word={{item.word}}&trans={{item.trans}}" redirect="false">
+            <text class="eitem">{{item.word}}</text>
+            <text class="citem">{{item.trans}}</text>
+          </navigator>
+        </view>
+      </scroll-view>
+    </block>
+
+    <!-- 搜索单词列表--单词不存在时提示 -->
+    <block wx:if="{{search&&!searchWords.length}}">
+      <view class="none">此单词暂未收录</view>
+    </block>
+
+    <block wx:if="{{!search&&!searchWords.length&&historyWord.length}}">
+      <scroll-view class="sw" scroll-y="true">
+        <view class="cans">
+          <navigator wx:for="{{historyWord}}" class="item" wx:key="sw" url="/pages/wordDetail/wordDetail?word={{item.word}}&trans={{item.trans}}&history=1" redirect="false">
+            <text class="eitem">{{item.word}}</text>
+            <text class="citem">{{item.trans}}</text>
+          </navigator>
+        </view>
+        <view class='history' bindtap='historyClean'>清除历史</view>
+      </scroll-view>
+    </block>
+  </view>
+</view>

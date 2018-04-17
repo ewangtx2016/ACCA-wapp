@@ -1,0 +1,67 @@
+<!--pages/video/video.wxml-->
+<view class='container'>
+  <view class='video'>
+    <video class="video-src" src="{{wordDetail.video.src}}"></video>
+    <view class='video-menu'>
+      <view class="video-menu-" bindtap='menuShow'></view>
+      <view class="video-menu--c" wx:if="{{menu}}">
+        <text>分享</text>
+        <text bindtap='zixun'>咨询</text>
+      </view>
+    </view>
+  </view>
+  <view class='video-intro'>
+    <text class='h1'>内容简介</text>
+    <text class='h2'>blablabla受到重大三从四德城市的城市到处csdcsadcasdcasdc</text>
+  </view>
+
+  <view class='cfa'>
+    <view class='h3'>CFA证书课程</view>
+    <view class='cfa-content'>
+      <view>
+        <image src="http://www.zbgedu.com/uploadfile/img/2017/1214/374_245_151323514479397.jpg"></image>
+        <view class='cfa-course'>
+          <text class='cfa-course--title'>复旦金融专硕（A班）</text>
+          <text class='cfa-course--intro'>CFA L1+FRM P1+FRM P2+复旦金融专硕专业课</text>
+        </view>
+      </view>
+      <view>
+        <image src="http://www.zbgedu.com/uploadfile/img/2017/1214/374_245_151323514479397.jpg"></image>
+        <view class='cfa-course'>
+          <text class='cfa-course--title'>复旦金融专硕（A班）</text>
+          <text class='cfa-course--intro'>CFA L1+FRM P1+FRM P2+复旦金融专硕专业课</text>
+        </view>
+      </view>
+      <view>
+        <image src="http://www.zbgedu.com/uploadfile/img/2017/1214/374_245_151323514479397.jpg"></image>
+        <view class='cfa-course'>
+          <text class='cfa-course--title'>复旦金融专硕（A班）</text>
+          <text class='cfa-course--intro'>CFA L1+FRM P1+FRM P2+复旦金融专硕专业课</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='comment'>
+    <view class='h3'>CFA证书课程</view>
+    <block wx:for="{{wordDetail.conment}}" wx:key="comment">
+      <view class='comment-who'>
+        <view class="userImg">
+          <image src="{{item.userpic}}"></image>
+        </view>
+        <view class="userWhat">
+          <view class='userAAA'>
+            <view class="userName">{{item.username}}</view>
+            <view class="userTime">2018.18.18</view>
+          </view>
+          <view class="userComment">{{item.msg}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class='comment-send'>
+    <textarea class="comment-cen" maxlength='60' auto-height="true" bindinput='comment' placeholder-style='font-size:28rpx;' placeholder='请输入评论'></textarea>
+    <view class='comment-sen'>发送</view>
+  </view>
+</view>
