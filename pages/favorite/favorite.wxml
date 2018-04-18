@@ -1,5 +1,6 @@
 <!--pages/favorite/favorite.wxml-->
 <view class="container">
+  <view  wx:if="{{favorite.length > 0}}">
   <scroll-view scroll-y class='favorite'>
     <block wx:for="{{favorite}}" wx:key="favorite">
       <navigator class='favorite-item' url="/pages/wordDetail/wordDetail?id={{item.id}}&name={{item.name}}&cname={{item.cname}}">
@@ -8,4 +9,8 @@
       </navigator>
     </block>
   </scroll-view>
+  </view>
+  <view class='nofavoe' wx:else>
+      暂无收藏
+  </view>
 </view>

@@ -18,9 +18,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+page{
+  background: #eaeaea;  
+}
+
 .container {
-  padding-top: 3vh;
-  background: #eaeaea;
+  border-top: 1px solid #eaeaea;
 }
 .favorite {
   width: 100%;
@@ -50,4 +53,11 @@
 
 .icon-right::before {
   content: '\e618';
+}
+
+.nofavoe{
+  text-align: center;
+  font-size: 35rpx;
+  font-weight: bold;
+  margin-top: 40vh;
 }
