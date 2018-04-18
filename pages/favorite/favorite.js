@@ -6,11 +6,10 @@ Page({
   data: {
     favorite: []
   },
-
   onLoad() {
+    this.data.favorite = wx.getStorageSync('wordfavor')
     this.setData({
-      favorite: globalData.favorite
+      favorite: this.data.favorite
     })
-    console.log(this.data.favorite)
   }
 })

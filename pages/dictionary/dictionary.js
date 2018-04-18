@@ -66,8 +66,7 @@ Page({
 
   onLoad() {
     this.setData({
-      historyWord: wx.getStorageSync('wordhistory').slice(0, 6) || []
+      historyWord: wx.getStorageSync('wordhistory').reverse().slice(0, 6) || []
     })
-    console.log(this.data.historyWord)
   }
 })

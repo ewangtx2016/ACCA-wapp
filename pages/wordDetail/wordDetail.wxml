@@ -28,7 +28,7 @@
 
     <!-- 单词视频 -->
     <view class="word-video">
-      <text class="h1" bindtap='biglv'>相关知识点微课</text>
+      <text class="h1">相关知识点微课</text>
       <view class="video" bindtap='video'>
         <view class='iconfont icon-video'></view>
         <text>{{wordDetail.video.title}}</text>

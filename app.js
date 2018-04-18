@@ -43,6 +43,7 @@ App({
   globalData: {
     userInfo: null,
     pathurl: 'http://demo.caicui.com',
+    listurl: 'http://dm.zbgedu.com',
     isClick: true
   },
 
@@ -53,11 +54,5 @@ App({
     setTimeout(() => {
       this.globalData.isClick = true
     }, 800)
-  },
-  // 设置历史单词的数量
-  setHistoryWord: function () {
-    if (this.globalData.historyWords.length > 10) {
-      this.globalData.historyWords = this.globalData.historyWords.slice(-10)
-    }
   }
 })

@@ -29,9 +29,9 @@
     <block wx:if="{{!search&&!searchWords.length&&historyWord.length}}">
       <scroll-view class="sw" scroll-y="true">
         <view class="cans">
-          <navigator wx:for="{{historyWord}}" class="item" wx:key="sw" url="/pages/wordDetail/wordDetail?id={{item.id}}&name={{item.name}}" redirect="false">
+          <navigator wx:for="{{historyWord}}" class="item" wx:key="sw" url="/pages/wordDetail/wordDetail?id={{item.id}}&name={{item.name}}&cname={{item.cname}}" redirect="false">
             <text class="eitem">{{item.name}}</text>
-            <text class="citem">{{item.chineseName}}</text>
+            <text class="citem">{{item.cname}}</text>
           </navigator>
         </view>
         <view class='history' bindtap='historyClean'>清除历史</view>

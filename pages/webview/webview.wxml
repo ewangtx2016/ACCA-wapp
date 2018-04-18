@@ -1,2 +1,2 @@
 <!--pages/webview/webview.wxml-->
-<web-view src="https://www.zbgedu.com"></web-view>
+<web-view src="{{listurl}}"></web-view>
