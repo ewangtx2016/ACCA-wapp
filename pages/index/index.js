@@ -34,7 +34,6 @@ Page({
 
   // 咨询页面
   zixun() {
-    console.log(111)
     if (!globalData.isClick) return
     wx.navigateTo({
       url: '/pages/favorite/favorite',
@@ -44,18 +43,6 @@ Page({
 
   onLoad() {
     app.getUserInfoCode()
-    
     let _this = this
-
-    wx.request({
-      url: '',
-      method: 'GET',
-      data: {},
-      success(res) {
-        _this.setData({
-          imgUrls: res
-        })
-      }
-    })
   }
 })

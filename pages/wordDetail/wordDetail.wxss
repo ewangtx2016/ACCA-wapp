@@ -79,7 +79,7 @@
 }
 
 .word-up .word-up--l {
-  display: inherit;
+  flex: 1;
 }
 
 .word-up text {
@@ -88,9 +88,22 @@
 }
 
 .word-down {
-  font-size: 34rpx;
   margin-left: 15rpx;
-  line-height: 120rpx;
+  padding: 20rpx 0;
+}
+
+.word-title{
+  font-size: 35rpx;
+  font-weight: bold;
+}
+
+.word-des{
+  display: block;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  text-align: justify;
+  margin-bottom: 20rpx;
+  
 }
 
 .icon-favor::before {

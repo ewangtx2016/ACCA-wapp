@@ -1,12 +1,13 @@
 // pages/dictionary/dictionary.js
 const app = getApp()
 const globalData = app.globalData
+const posturl = globalData.pathurl
 
 Page({
   data: {
     search: '',
     searchWords: [],
-    historyWord: []
+    historyWord: wx.getStorageSync('wordhistory').slice(0,6) || []
   },
 
   // 获取输入
@@ -30,21 +31,20 @@ Page({
   searchWord(word) {
     let sw = []
     let reg = new RegExp(`^${word}`, 'i')
-    let wordsBak = globalData.words[(word[0]).toUpperCase()]
-    if (!wordsBak) return false
-    if (!word[1]) {
-      this.setData({
-        searchWords: wordsBak
-      })
-      return false
-    }
-    for (let val of wordsBak) {
-      if (reg.test(val.word)) {
-        sw.push(val)
+    let _this = this
+    wx.request({
+      url: posturl + '/api/teachsource/englishWord/searchEnglishWordPage?pageNo=1&pageSize=6&name=' + word,
+      success: function(res){
+        if (res.data.pageSize > 0){
+          for (let one of res.data.data){
+            sw = res.data.data
+          }
+          _this.data.searchWords = sw
+          _this.setData({
+            searchWords:_this.data.searchWords
+          })
+        }
       }
-    }
-    this.setData({
-      searchWords: sw
     })
   },
 
@@ -58,17 +58,16 @@ Page({
 
   // 清除历史
   historyClean() {
+    wx.removeStorageSync('wordhistory')
     this.setData({
       historyWord: []
     })
-    globalData.historyWords = []
   },
 
   onLoad() {
-    console.log(globalData.historyWords)
-    globalData.wordDetail = {}
     this.setData({
-      historyWord: globalData.historyWords
+      historyWord: wx.getStorageSync('wordhistory').slice(0, 6) || []
     })
+    console.log(this.data.historyWord)
   }
 })

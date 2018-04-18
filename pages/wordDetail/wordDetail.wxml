@@ -3,7 +3,7 @@
   <view class="search">
     <view class="input">
       <image src="/images/search.png"></image>
-      <view class="btn" bindtap="biu">{{word.word}}</view>
+      <view class="btn" bindtap="biu">{{wordDetail.name}}</view>
     </view>
   </view>
 
@@ -11,17 +11,24 @@
     <view class="wordTrans">
       <view class="word-up">
         <view class='word-up--l'>
-          <text>{{wordDetail.word}}</text>
-          <view bindtap='favorWord' style="color:{{favor ? '#ff366d' : ''}}" class="iconfont icon-favor"></view>
+          <text>{{wordDetail.name}}</text>
         </view>
+        <view bindtap='favorWord' style="color:{{favor ? '#ff366d' : ''}}" class="iconfont icon-favor"></view>
         <view class='iconfont icon-share'></view>
       </view>
-      <view class='word-down'>{{wordDetail.trans}}</view>
+      <view class='word-down'>
+        <view class='word-title'>
+          {{wordDetail.chineseName}}
+        </view>
+        <text class='word-des'>
+            {{wordDetail.description}}
+        </text>
+      </view>
     </view>
 
     <!-- 单词视频 -->
     <view class="word-video">
-      <text class="h1">相关知识点微课</text>
+      <text class="h1" bindtap='biglv'>相关知识点微课</text>
       <view class="video" bindtap='video'>
         <view class='iconfont icon-video'></view>
         <text>{{wordDetail.video.title}}</text>

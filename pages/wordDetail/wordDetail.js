@@ -1,6 +1,8 @@
 // pages/wordDetail/wordDetail.js
 const app = getApp()
 const globalData = app.globalData
+const posturl = globalData.pathurl
+//!globalData.isClick
 
 Page({
 
@@ -10,42 +12,51 @@ Page({
   data: {
     word: {},
     favor: true,
-    wordDetail: {
-      word: 'account',
-      trans: '会计',
-      video: {title: 'CFA L1 Reading 9::Probability Standards',
-      src: 'https://gss3.baidu.com/6LZ0ej3k1Qd3ote6lo7D0j9wehsv/tieba-smallvideo/13_9182e6961320c50b2553cce4b0e900ac.mp4'},
-      conment: [{
-        username: '马云',
-        userpic: 'http://www.zbgedu.com/statics/images/zb/images-df/yw_inright_xlr.png',
-        msg: '这个单词是真的难记住啊，得亏这个小词典帮了我的大忙啊!!!!!!!!'
-      },
-      {
-        username: '马云',
-        userpic: 'http://www.zbgedu.com/statics/images/zb/images-df/yw_inright_xlr.png',
-        msg: '这个单词是真的难记住啊，得亏这个小词典帮了我的大忙啊!!!!!!!!'
-      }]
-    }
+    wordDetail: null
   },
   
   onLoad: function (option) {
-    let words = option
-    this.setData({
-      word: words
-    })
-
-    if ((!words.word) || words.history) return
-    if (globalData.historyWords.length) {
-      for (let key of globalData.historyWords) {
-        if (key.word == words.word) {
-          return false
+    let _this = this
+    let wordid = option.id
+    let wordname = option.name
+    let storage = {
+      id: wordid,
+      name: wordname
+    }
+    let thehistory = wx.getStorageSync('wordhistory') || []
+    
+    wx.request({
+      url: posturl + '/api/teachsource/englishWord/searchEnglishWordDetailById?englishWordId=' + wordid,
+      success: function(res){
+        let thisobject = null
+        thisobject = res.data.data[0]
+        let reg = new RegExp('<[a-z]+>','ig')
+        thisobject.description = thisobject.description.replace(reg,'')
+        _this.setData({
+          wordDetail: thisobject
+        })
+        if (!_this.wordFilter(thehistory, wordid)){
+          thehistory.push(storage)
+          wx.setStorageSync('wordhistory', thehistory)
         }
       }
+    })
+    
+  },
+
+  wordFilter:function(arr,word){
+    // 过滤缓存中是否存在某个历史单词，如果有那么就返回true，否则返回false
+    let isnub = 0
+    for(let one of arr){
+      if (one.id == word){
+        isnub++
+      }
     }
-    // if (!globalData.historyWords.includes(words)) {
-    globalData.historyWords.push(words)
-    // }
-    app.setHistoryWord()
+    if (isnub>0){
+      return true
+    }else{
+      return false
+    }
   },
 
   // 页面跳转到单词查询
