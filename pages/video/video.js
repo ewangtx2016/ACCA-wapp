@@ -1,26 +1,42 @@
 // pages/video/video.js
 const app = getApp()
 const globalData = app.globalData
+const posturl = globalData.pathurl
 
 Page({
   data: {
-    wordDetail: {},
-    comment: '',
-    menu: false
+    menu: false,
+    playurl: null,
+    thisobj: null
   },
-  onLoad() {
-    this.setData({
-      wordDetail: globalData.wordDetail
+  onLoad(res) {
+    let _this = this
+    _this.setData({
+      playurl: res
     })
-    console.log(this.data.wordDetail)
+    console.log(res)
+    wx.request({
+      url: posturl + '/api/teachsource/lesson/video/getVideosByCCId?ccid=' + res.ccid,
+      success: function(res){
+        console.log(res)
+        let thisobj = null
+        let ccobj = null
+        if (res.statusCode == 200 && res.data.data.length > 0){
+          thisobj = {
+            title: res.data.data[0].title
+          }
+          _this.setData({
+            thisobj:thisobj
+          })
+          if (res.data.data[0]['ccdata']){
+            ccobj = JSON.parse(res.data.data[0]['ccdata'])
+            console.log(ccobj)
+          }
+        }
+      }
+    })
   },
 
-  // 输入评论
-  comment(e) {
-    this.setData({
-      comment: e.detail.value
-    })
-  },
 
   // 显示菜单
   menuShow() {

@@ -7,7 +7,7 @@
     </view>
     <view class="user-fav" bindtap='zixun'>
       <view class="user-img">
-        <image src="{{userImg}}"></image>
+        <image src="{{userinfo.avatarUrl}}"></image>
       </view>
       <view class="user-sc">收藏夹</view>
     </view>

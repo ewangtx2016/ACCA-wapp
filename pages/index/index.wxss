@@ -18,7 +18,7 @@
 }
 
 .input .btn {
-  width: 460rpx;
+  width: 490rpx;
   padding: 20rpx 40rpx 20rpx 70rpx;
   font-size: 28rpx;
   border-radius: 10rpx;
@@ -49,6 +49,7 @@
 .user-fav .user-img image{
   width: 100%;
   height: 100%;
+  border-radius: 100%;
 }
 .user-fav .user-sc {
   position: absolute;

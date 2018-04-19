@@ -5,7 +5,7 @@ const globalData = app.globalData
 
 Page({
   data: {
-    userImg: 'http://www.zbgedu.com/statics/images/zb/images-df/yw_inright_xlr.png',
+    userinfo: null,
     imgUrls: [
       'http://www.zbgedu.com/uploadfile/img/2018/0327/265_176_152213440315287.jpg',
       'http://www.zbgedu.com/uploadfile/img/2018/0207/265_176_151799253213696.jpg',
@@ -50,7 +50,12 @@ Page({
   },
 
   onLoad() {
-    app.getUserInfoCode()
     let _this = this
+    //获取用户信息
+    app.getUserInfoCode(function(res){
+      _this.setData({
+        userinfo: res.userInfo
+      })  
+    })    
   }
 })

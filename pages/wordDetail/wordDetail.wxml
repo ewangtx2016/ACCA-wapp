@@ -14,7 +14,7 @@
           <text>{{wordDetail.name}}</text>
         </view>
         <view bindtap='favorWord' style="color:{{favor ? '#ff366d' : ''}}" class="iconfont icon-favor"></view>
-        <view class='iconfont icon-share'></view>
+        <button class='iconfont icon-share' open-type="share"></button>
       </view>
       <view class='word-down'>
         <view class='word-title'>
@@ -29,9 +29,17 @@
     <!-- 单词视频 -->
     <view class="word-video">
       <text class="h1">相关知识点微课</text>
-      <view class="video" bindtap='video'>
-        <view class='iconfont icon-video'></view>
-        <text>{{wordDetail.video.title}}</text>
+      <view class="video">
+        <block wx:for="{{thisvideo}}" wx:key="{{item.id}}">
+          <view class='video-list'>
+            <navigator url='/pages/video/video?url={{item.url}}&{{item.search}}&ccid={{ccid}}'>
+              <view class='iconfont icon-video'></view>
+              <text>{{item.partitle}}[{{item.id == 20 ? '流畅' : '高清'}}]</text>
+            </navigator>
+          </view>
+        </block>
+
+
       </view>
     </view>
 

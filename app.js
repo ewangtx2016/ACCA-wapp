@@ -3,7 +3,8 @@ App({
   onLaunch: function () {
   },
 
-  getUserInfoCode() {
+  getUserInfoCode(callback) {
+    let _this = this
     // 登录
     wx.login({
       success: res => {
@@ -22,16 +23,24 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
+              //获取用户信息 赋值
+              if (callback) {
+                callback(res)
+              }
             }
           })
         } else {
           wx.getUserInfo({
             success: res => {
-              console.log(res)
+              
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
+              }
+              //获取用户信息 赋值
+              if (callback){
+                callback(res)
               }
             }
           })
@@ -44,6 +53,7 @@ App({
     userInfo: null,
     pathurl: 'http://demo.caicui.com',
     listurl: 'http://dm.zbgedu.com',
+    ccurl: 'https://p.bokecc.com/api/mobile?',
     isClick: true
   },
 

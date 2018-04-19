@@ -1,21 +1,21 @@
 <!--pages/video/video.wxml-->
 <view class='container'>
   <view class='video'>
-    <video class="video-src" src="{{wordDetail.video.src}}"></video>
-    <view class='video-menu'>
+    <video class="video-src" src="{{playurl.url}}?t={{playurl.t}}&key={{playurl.key}}"></video>
+    <!-- <view class='video-menu'>
       <view class="video-menu-" bindtap='menuShow'></view>
       <view class="video-menu--c" wx:if="{{menu}}">
         <text>分享</text>
         <text bindtap='zixun'>咨询</text>
       </view>
-    </view>
+    </view> -->
   </view>
   <view class='video-intro'>
     <text class='h1'>内容简介</text>
-    <text class='h2'>blablabla受到重大三从四德城市的城市到处csdcsadcasdcasdc</text>
+    <text class='h2'>{{thisobj.title}}</text>
   </view>
 
-  <view class='cfa'>
+  <view class='cfa' >
     <view class='h3'>CFA证书课程</view>
     <view class='cfa-content'>
       <view>
@@ -42,26 +42,10 @@
     </view>
   </view>
 
-  <view class='comment'>
-    <view class='h3'>CFA证书课程</view>
-    <block wx:for="{{wordDetail.conment}}" wx:key="comment">
-      <view class='comment-who'>
-        <view class="userImg">
-          <image src="{{item.userpic}}"></image>
-        </view>
-        <view class="userWhat">
-          <view class='userAAA'>
-            <view class="userName">{{item.username}}</view>
-            <view class="userTime">2018.18.18</view>
-          </view>
-          <view class="userComment">{{item.msg}}</view>
-        </view>
-      </view>
-    </block>
-  </view>
+  
 
-  <view class='comment-send'>
+  <!-- <view class='comment-send' wx:if='{{false}}'>
     <textarea class="comment-cen" maxlength='60' auto-height="true" bindinput='comment' placeholder-style='font-size:28rpx;' placeholder='请输入评论'></textarea>
     <view class='comment-sen'>发送</view>
-  </view>
+  </view> -->
 </view>

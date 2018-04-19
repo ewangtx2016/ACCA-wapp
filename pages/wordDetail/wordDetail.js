@@ -2,6 +2,8 @@
 const app = getApp()
 const globalData = app.globalData
 const posturl = globalData.pathurl
+const ccurl = globalData.ccurl
+const md5 = require('../../js/md5.js')
 //!globalData.isClick
 
 Page({
@@ -18,7 +20,9 @@ Page({
     wordcname: null,
     storage: null,
     thehistory: null,
-    thefavor: null
+    thefavor: null,
+    thisvideo: [],
+    ccid: null
   },
   
   onLoad: function (option) {
@@ -42,8 +46,14 @@ Page({
       url: posturl + '/api/teachsource/englishWord/searchEnglishWordDetailById?englishWordId=' + this.data.wordid,
       success: function(res){
         let thisobject = null
+        let reg = new RegExp('<[a-z]+>', 'ig')
+        let ccid = null
+        let keys = null
         thisobject = res.data.data[0]
-        let reg = new RegExp('<[a-z]+>','ig')
+        ccid = thisobject.ccid
+        
+        
+        // 获取当前单词数据进行赋值
         thisobject.description = thisobject.description.replace(reg,'')
         _this.setData({
           wordDetail: thisobject
@@ -52,9 +62,68 @@ Page({
           _this.data.thehistory.push(_this.data.storage)
           wx.setStorageSync('wordhistory', _this.data.thehistory)
         }
+
+        //通过ccid获取视频信息数据表
+        wx.request({
+          url: posturl + '/api/teachsource/lesson/video/getVideosByCCId?ccid=' + ccid,
+          success: function (res) {
+            if (res.statusCode == 200 && res.data.data.length > 0){
+              keys = res.data.data
+              for (var i = 0; i < keys.length;i++){
+                _this.getCCvideo(keys[i], keys[i].title)
+              }
+              
+            }else{
+              console.log('ccid错误')
+            }
+          }
+        })
+
+       
       }
     })
     
+  },
+
+  getCCvideo:function(obj,title){
+    let _this = this
+    let time = new Date().getTime()
+    //通过第三方cc接口获取视频播放地址数组
+    let videourl = 'format=json&hlsflag=0&httpsflag=1&userid=' + obj.videoSiteId + '&videoid=' + obj.videoCcid + '&time=' + time + '&salt=' + obj.apiKey
+    videourl = md5.hexMD5(videourl)
+    videourl = ccurl + 'format=json&hlsflag=0&httpsflag=1&userid=' + obj.videoSiteId + '&videoid=' + obj.videoCcid + '&time=' + time + '&hash=' + videourl
+    // 请求视频播放地址 https
+    wx.request({
+      url: videourl,
+      method: 'GET',
+      success: function (res) {
+        if (res.statusCode == 200){
+          res.data.video.copy.partitle = title
+          _this.setData({
+            thisvideo: _this.data.thisvideo.concat(_this.forvideourl(res.data.video.copy, title)),
+            ccid: obj.videoCcid
+          })
+        }else{
+          console.log('参数错误')
+        }
+      }
+    })
+        // ccurl ?format=json&httpsflag=1&userid=CB735BE8334BC857&videoid=
+  },
+  //重组url对象
+  forvideourl: function (attr, title){
+    let newvideo = []
+    for (let one of attr){
+      let thisurlar = one.playurl.split('?')
+      let thisurlobj = {
+        id: one.quality,
+        url: thisurlar[0],
+        search: thisurlar[1],
+        partitle: title
+      }
+      newvideo.push(thisurlobj)
+    }
+    return newvideo
   },
 
   checkStar: function(){
@@ -121,13 +190,10 @@ Page({
 
     app.setIsClick()
   },
-
-  // 跳转到视频播放界面
-  video() {
-    if (!globalData.isClick) return
-    wx.navigateTo({
-      url: '/pages/video/video',
+  //转发分享按钮
+  shareBtn: function(){
+    wx.showShareMenu({
+      withShareTicket: true
     })
-    app.setIsClick()
   }
 })
