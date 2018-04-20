@@ -72,6 +72,11 @@
   display: block;
 }
 
+.video-intro text.h2{
+  font-size: 30rpx;
+  margin: 20rpx 0;
+}
+
 .cfa {
   margin-top: 26rpx;
   padding: 20rpx 4% 20rpx;
@@ -95,7 +100,6 @@
 }
 
 .cfa-content {
-  background: #eee;
   overflow: hidden;
 }
 
@@ -106,9 +110,22 @@
   background: #fff;
 }
 
+.cfa-list-item{
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 20rpx;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+
+
+.cfa-list-item .cfa-course{
+  flex: 1;
+}
+
 .cfa-content image {
-  width: 360rpx;
-  height: 150rpx;
+  width: 260rpx;
+  height: 160rpx;
   padding-right: 40rpx;
 }
 

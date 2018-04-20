@@ -20,9 +20,9 @@
         <view class='word-title'>
           {{wordDetail.chineseName}}
         </view>
-        <text class='word-des'>
+        <view class='word-des'>
             {{wordDetail.description}}
-        </text>
+        </view>
       </view>
     </view>
 
@@ -30,16 +30,19 @@
     <view class="word-video">
       <text class="h1">相关知识点微课</text>
       <view class="video">
-        <block wx:for="{{thisvideo}}" wx:key="{{item.id}}">
-          <view class='video-list'>
-            <navigator url='/pages/video/video?url={{item.url}}&{{item.search}}&ccid={{ccid}}'>
-              <view class='iconfont icon-video'></view>
-              <text>{{item.partitle}}[{{item.id == 20 ? '流畅' : '高清'}}]</text>
-            </navigator>
-          </view>
-        </block>
-
-
+        <view wx:if="{{thisvideo.length > 0 && thisvideo}}">
+          <block wx:if="{{thisvideo}}" wx:for="{{thisvideo}}" wx:key="{{item.id}}">
+            <view class='video-list'>
+              <navigator url='/pages/video/video?url={{item.url}}&{{item.search}}&ccid={{ccid}}'>
+                <view class='iconfont icon-video'></view>
+                <text>{{item.partitle}}[{{item.id == 20 ? '流畅' : '高清'}}]</text>
+              </navigator>
+            </view>
+          </block>
+        </view>
+        <view wx:else class='video-nothing'>
+          暂无
+        </view>
       </view>
     </view>
 
@@ -47,39 +50,21 @@
     <view class="word-gkk">
       <text class="h1">热门公开课</text>
       <scroll-view scroll-y class='gkk-course'>
-        <view class="gkk-course--item">
-          <view class="gkk-course--item-intro">
-            <image src="http://www.zbgedu.com/uploadfile/img/2018/0320/265_176_152151296434356.jpg"></image>
-            <view class="gkk-course--item_title">
-              <view class='h2'>2018年4月CMA P1考前冲刺串讲</view>
-              <view class='h3'>讲师：Yang Wu</view>
+        <block wx:for="{{cfaOpenClass}}" wx:key="{{item.id}}">
+          <navigator url='/pages/webview/webview?url={{item.link}}' class='gkk-item-link'>
+            <view class="gkk-course--item">
+              <view class="gkk-course--item-intro">
+                <image src="{{item.imgsrc}}"></image>
+                <view class="gkk-course--item_title">
+                  <view class='h2'>{{item.title}}</view>
+                  <view class='h3'>{{item.des}}</view>
+                </view>
+                <text wx:if="{{item.tag && item.tag.length > 0}}" class="gkk-course--item_price">{{item.tag}}</text>
+              </view>
+              <!-- <view class="iconfont icon-time"> {{item.datatime}}</view> -->
             </view>
-            <text class="gkk-course--item_price">免费</text>
-          </view>
-          <view class="iconfont icon-time"> 2018-02-26 18:30-20:30</view>
-        </view>
-        <view class="gkk-course--item">
-          <view class="gkk-course--item-intro">
-            <image src="http://www.zbgedu.com/uploadfile/img/2018/0320/265_176_152151296434356.jpg"></image>
-            <view class="gkk-course--item_title">
-              <view class='h2'>2018年4月CMA P1考前冲刺串讲</view>
-              <view class='h3'>讲师：Yang Wu</view>
-            </view>
-            <text class="gkk-course--item_price">免费</text>
-          </view>
-          <view class="iconfont icon-time"> 2018-02-26 18:30-20:30</view>
-        </view>
-        <view class="gkk-course--item">
-          <view class="gkk-course--item-intro">
-            <image src="http://www.zbgedu.com/uploadfile/img/2018/0320/265_176_152151296434356.jpg"></image>
-            <view class="gkk-course--item_title">
-              <view class='h2'>2018年4月CMA P1考前冲刺串讲</view>
-              <view class='h3'>讲师：Yang Wu</view>
-            </view>
-            <text class="gkk-course--item_price">免费</text>
-          </view>
-          <view class="iconfont icon-time"> 2018-02-26 18:30-20:30</view>
-        </view>
+          </navigator>
+        </block>
       </scroll-view>
     </view>
   </view>

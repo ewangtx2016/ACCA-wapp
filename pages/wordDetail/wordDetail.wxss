@@ -103,7 +103,7 @@
   font-size: 30rpx;
   text-align: justify;
   margin-bottom: 20rpx;
-  
+  margin-top: 20rpx;
 }
 
 .icon-favor::before {
@@ -199,11 +199,13 @@
 
 .gkk-course--item_title {
   margin: 0 20rpx;
+  width: 500rpx;
 }
 
 .gkk-course--item_title .h2 {
-  font-size: 30rpx;
+  font-size: 32rpx;
   color: #333;
+  margin-bottom: 20rpx;
 }
 
 .gkk-course--item_title .h3 {
@@ -251,4 +253,9 @@
 
 .icon-share::after{
   border: none;
+}
+
+
+.video-nothing{
+  font-size: 30rpx;
 }

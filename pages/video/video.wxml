@@ -1,7 +1,7 @@
 <!--pages/video/video.wxml-->
 <view class='container'>
   <view class='video'>
-    <video class="video-src" src="{{playurl.url}}?t={{playurl.t}}&key={{playurl.key}}"></video>
+    <video autoplay="true" danmu-list="{{danmuList}}"  danmu-btn="{{danmuListBool}}" enable-danmu="{{danmuListBool}}" class="video-src" src="{{playurl.url}}?t={{playurl.t}}&key={{playurl.key}}"></video>
     <!-- <view class='video-menu'>
       <view class="video-menu-" bindtap='menuShow'></view>
       <view class="video-menu--c" wx:if="{{menu}}">
@@ -18,27 +18,17 @@
   <view class='cfa' >
     <view class='h3'>CFA证书课程</view>
     <view class='cfa-content'>
-      <view>
-        <image src="http://www.zbgedu.com/uploadfile/img/2017/1214/374_245_151323514479397.jpg"></image>
-        <view class='cfa-course'>
-          <text class='cfa-course--title'>复旦金融专硕（A班）</text>
-          <text class='cfa-course--intro'>CFA L1+FRM P1+FRM P2+复旦金融专硕专业课</text>
-        </view>
-      </view>
-      <view>
-        <image src="http://www.zbgedu.com/uploadfile/img/2017/1214/374_245_151323514479397.jpg"></image>
-        <view class='cfa-course'>
-          <text class='cfa-course--title'>复旦金融专硕（A班）</text>
-          <text class='cfa-course--intro'>CFA L1+FRM P1+FRM P2+复旦金融专硕专业课</text>
-        </view>
-      </view>
-      <view>
-        <image src="http://www.zbgedu.com/uploadfile/img/2017/1214/374_245_151323514479397.jpg"></image>
-        <view class='cfa-course'>
-          <text class='cfa-course--title'>复旦金融专硕（A班）</text>
-          <text class='cfa-course--intro'>CFA L1+FRM P1+FRM P2+复旦金融专硕专业课</text>
-        </view>
-      </view>
+        <block wx:for="{{courses}}" wx:key="{{item.id}}">
+          <navigator url='/pages/webview/webview?url={{item.url}}'>
+              <view class='cfa-list-item'>
+                <image src="{{item.imgurl}}"></image>
+                <view class='cfa-course'>
+                  <text class='cfa-course--title'>{{item.title}}</text>
+                  <text class='cfa-course--intro'>{{item.des}}</text>
+                </view>
+              </view>
+          </navigator>
+        </block>
     </view>
   </view>
 

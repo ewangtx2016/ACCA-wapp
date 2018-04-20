@@ -9,13 +9,13 @@
       <view class="user-img">
         <image src="{{userinfo.avatarUrl}}"></image>
       </view>
-      <view class="user-sc">收藏夹</view>
+      <view class="user-sc">收藏</view>
     </view>
   </view>
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}" wx:key="swiper">
+    <block wx:for="{{imgUrls}}" wx:key="{{item.id}}">
       <swiper-item class="swiper-item">
-        <image src="{{item}}" class="slide-image" />
+        <image src="{{item.url}}" mode='aspectFill' bindtap='banclick' data-url="{{item.linkurl}}" class="slide-image"/>
       </swiper-item>
     </block>
   </swiper>
@@ -24,7 +24,7 @@
       <view class='zixun-title'>中博金融CFA</view>
       <scroll-view scroll-y class='zixun-content'>
         <block wx:for="{{zixun}}" wx:key="zixun">
-          <navigator url='/pages/webview/webview?id={{item.id}}&title={{item.title}}'>
+          <navigator url='/pages/webview/webview?url={{item.linkurl}}'>
             <view class='zixun-content--item'>
               <view>{{item.title}}</view>
             </view>

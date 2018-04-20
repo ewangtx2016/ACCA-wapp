@@ -12,7 +12,7 @@ Page({
 
   // 获取输入
   what(e) {
-    let value = e.detail.value.trim()
+    let value = e.detail.value
     this.setData({
       search: value
     })
@@ -65,8 +65,9 @@ Page({
   },
 
   onLoad() {
+    let wordhisar = wx.getStorageSync('wordhistory') || []
     this.setData({
-      historyWord: wx.getStorageSync('wordhistory').reverse().slice(0, 6) || []
+      historyWord: wordhisar.reverse().slice(0, 6)
     })
   }
 })
