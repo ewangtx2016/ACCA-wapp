@@ -8,7 +8,7 @@ Page({
   data: {
     listurl: null
   },
-  onLoad: function(res){
+  onLoad: function (res) {
     //拼接web-view的链接地址
     this.data.listurl = weburl + res.url
     this.setData({

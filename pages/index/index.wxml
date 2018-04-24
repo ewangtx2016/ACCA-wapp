@@ -21,7 +21,7 @@
   </swiper>
   <view class="zixun-logo">
     <view class="zixun">
-      <view class='zixun-title'>中博金融CFA</view>
+      <view class='zixun-title'>中博教育CFA</view>
       <scroll-view scroll-y class='zixun-content'>
         <block wx:for="{{zixun}}" wx:key="zixun">
           <navigator url='/pages/webview/webview?url={{item.linkurl}}'>

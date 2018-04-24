@@ -22,7 +22,7 @@ Page({
       },
       {
         id: 2,
-        url: 'https://www.zbgedu.com/uploadfile/img/2017/1123/151142311744711.png',
+        url: '/images/wepy-banner.jpg',
         title: 'CFA',
         linkurl: '/cfa.html'
       }
@@ -78,7 +78,6 @@ Page({
     let _this = this
     //获取用户信息
     app.getUserInfoCode(function(res){
-      console.log(res.userInfo)
       _this.setData({
         userinfo: res.userInfo
       })  
