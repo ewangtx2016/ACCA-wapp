@@ -33,7 +33,7 @@ Page({
     let reg = new RegExp(`^${word}`, 'i')
     let _this = this
     wx.request({
-      url: posturl + '/api/teachsource/englishWord/searchEnglishWordPage?pageNo=1&pageSize=6&name=' + word,
+      url: posturl + '/api/teachsource/englishWord/searchEnglishWordPage?pageNo=1&pageSize=6&name=' + word + '&certificate=CFA',
       success: function(res){
         if (res.data.pageSize > 0){
           for (let one of res.data.data){

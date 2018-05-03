@@ -80,14 +80,17 @@
 } */
 
 .eitem {
-  margin-right: 40rpx;
-  font-size: 36rpx;
+  font-size: 35rpx;
+  line-height: 40rpx;
+  margin-bottom: 10rpx;
   color: #131313;
+  margin-right: 20rpx;
 }
 
 .citem {
   font-size: 28rpx;
   color: #b7b7b7;
+  
 }
 
 .sw {

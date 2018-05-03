@@ -84,6 +84,7 @@ Page({
     wx.request({
       url: posturl + '/api/teachsource/englishWord/searchEnglishWordDetailById?englishWordId=' + this.data.wordid,
       success: function(res){
+        
         //判断是否请求成功，否则报错误信息内容
         if (res.statusCode != 200 || res.data.data.length <= 0){
           console.log('获取单词mess错误：' + res.statusCode + '[' + res.errMsg + ']')
@@ -91,15 +92,14 @@ Page({
         }
 
         let thisobject = null
-        let reg = new RegExp('<[a-z]+>', 'ig')
         let wordccid = null
         let keys = null
-        thisobject = res.data.data[0]
-        wordccid =  thisobject.ccid
+        thisobject = res.data.data[0] || null
+        wordccid =  thisobject.ccid || null
         
+        console.log(thisobject)
         
         // 获取当前单词数据进行赋值
-        thisobject.description = thisobject.description.replace(reg,'')
         _this.setData({
           wordDetail: thisobject
         })

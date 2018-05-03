@@ -36,6 +36,9 @@
   font-weight: 300;
   color: #000;
   background: #eaeaea;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search .input image {
@@ -74,21 +77,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 20rpx;
+  padding-bottom: 5rpx;
   border-bottom: 1px dashed #ccc;
 }
 
 .word-up .word-up--l {
   flex: 1;
+  line-height: 40rpx;
 }
 
 .word-up text {
-  margin-left: 15rpx;
   margin-right: 30rpx;
+  line-height: 40rpx;
 }
 
 .word-down {
-  margin-left: 15rpx;
   padding: 20rpx 0;
 }
 

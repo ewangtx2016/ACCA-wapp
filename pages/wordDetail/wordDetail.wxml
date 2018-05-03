@@ -21,7 +21,7 @@
           {{wordDetail.chineseName}}
         </view>
         <view class='word-des'>
-            {{wordDetail.description}}
+          {{wordDetail.description ? wordDetail.description : ''}}
         </view>
       </view>
     </view>
