@@ -5,7 +5,8 @@ const posturl = globalData.pathurl
 
 Page({
   data: {
-    search: '',
+    search: null,
+    searchNow: true,
     searchWords: [],
     historyWord: wx.getStorageSync('wordhistory').slice(0,6) || []
   },
@@ -13,6 +14,13 @@ Page({
   // 获取输入
   what(e) {
     let value = e.detail.value
+
+    if(value == ''){
+      this.setData({
+        searchNow: true
+      })
+    }
+
     this.setData({
       search: value
     })
@@ -41,7 +49,8 @@ Page({
           }
           _this.data.searchWords = sw
           _this.setData({
-            searchWords:_this.data.searchWords
+            searchWords:_this.data.searchWords,
+            searchNow: false
           })
         }
       }

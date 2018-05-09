@@ -1,3 +1,5 @@
+const md5 = require('./js/md5.js')
+
 //app.js
 App({
   onLaunch: function () {
@@ -10,7 +12,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-       
+        _this.globalData.code = res.code
       }
     })
     // 获取用户信息
@@ -21,7 +23,9 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              
+              _this.globalData.encryptedData = res.encryptedData
+              _this.globalData.iv = res.iv
+              _this.loginAjax(_this.globalData)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -34,9 +38,8 @@ App({
             }
           })
         } else {
-          wx.getUserInfo({
+          wx.getUserInfo({ 
             success: res => {
-              console.log(res)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -63,9 +66,38 @@ App({
     ccurl: 'https://p.bokecc.com/api/mobile?',
     // request()公开课 和 课程 的接口地址
     classurl: 'https://www.zbgedu.com',
-    isClick: true
+    isClick: true,
+    encryptedData: null,
+    iv: null,
+    code: null
   },
 
+  loginAjax: function(data){
+    let _this = this
+    let lvtime = (new Date().getTime() / 1000) | 0
+    let params = data.code + data.encryptedData + data.iv
+    let md5Params = md5.hexMD5(params)
+    let lvhash = md5.hexMD5(params + md5Params)
+    let thisdata = {
+      encryptedData: data.encryptedData,
+      iv: data.iv,
+      time: lvtime,
+      code: data.code,
+      hash: lvhash
+    }
+    console.log(_this.globalData.classurl)
+    wx.request({
+      method: 'POST',
+      // header: {
+      //   'content-type': 'application/x-www-form-urlencoded'
+      // },
+      url: _this.globalData.classurl + '/index.php?m=out_api&c=importVisit&a=save_user_info',
+      data: thisdata,
+      success: function(res){
+        console.log(res) 
+      }
+    })
+  },
 
   // 页面函数是否点击
   setIsClick: function () {

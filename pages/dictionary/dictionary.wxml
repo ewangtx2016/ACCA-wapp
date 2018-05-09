@@ -22,7 +22,7 @@
     </block>
 
     <!-- 搜索单词列表--单词不存在时提示 -->
-    <block wx:if="{{search&&!searchWords.length}}">
+    <block wx:if="{{!searchNow&&!searchWords.length}}">
       <view class="none">此单词暂未收录</view>
     </block>
 
