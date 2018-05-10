@@ -38,9 +38,14 @@ App({
             }
           })
         } else {
+          let _this = this
           wx.getUserInfo({ 
             success: res => {
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              _this.globalData.encryptedData = res.encryptedData
+              _this.globalData.iv = res.iv
+              _this.loginAjax(_this.globalData)
+
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
@@ -85,16 +90,16 @@ App({
       code: data.code,
       hash: lvhash
     }
-    console.log(_this.globalData.classurl)
+   
     wx.request({
       method: 'POST',
-      // header: {
-      //   'content-type': 'application/x-www-form-urlencoded'
-      // },
       url: _this.globalData.classurl + '/index.php?m=out_api&c=importVisit&a=save_user_info',
       data: thisdata,
       success: function(res){
-        console.log(res) 
+        if (res.data.state == 'success'){
+          wx.setStorageSync('useid', res.data.msg)
+        }
+        
       }
     })
   },
